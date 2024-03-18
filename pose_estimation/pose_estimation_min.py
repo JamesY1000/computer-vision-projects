@@ -2,6 +2,9 @@ import cv2
 import mediapipe as mp
 import time
 
+mpPose = mp.solutions.pose
+pose = mpPose.Pose()
+
 video_path = "/mnt/c/Users/james/OneDrive/Desktop/Computer vision videos/PoseVideos/"
 cap = cv2.VideoCapture(video_path + "video2.mp4")
 
