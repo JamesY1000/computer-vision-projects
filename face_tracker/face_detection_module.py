@@ -51,13 +51,36 @@ class faceDetector():
                 print(f"Left boundary: {bbox_coords[0][0]}", f"Lower boundary: {bbox_coords[0][1]}", f"Right boundary: {bbox_coords[0][2]}", f"Upper boundary: {bbox_coords[0][3]}")
 
                 if draw:
-                    cv2.rectangle(img, (left_bound, lower_bound, right_bound, upper_bound), (0, 255, 0), 1)
+                    # Draws face detection boundaries
+                    cv2.rectangle(img, (left_bound, lower_bound, right_bound, upper_bound), (0, 255, 255), 1)
+                    self.cornerpoint(img, left_bound, lower_bound, right_bound, upper_bound)
 
                     # Add detection confidence
                     cv2.putText(img, f"Det conf: {str(int(det_conf[0] * 100))}%", (left_bound, lower_bound - 20), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 100, 255), 1)
             
         return img, bbox_coords
+    
+    # Create a cornerpoint frame
+    def cornerpoint(self, img, left_bound, lower_bound, right_bound, upper_bound, l=30, t=10):
+        x, y, w, h = left_bound, lower_bound, right_bound, upper_bound
+        x1, y1, = x + w, y + h
 
+        # Top left
+        cv2.line(img, (x, y), (x, y + l), (0, 255, 255), t)
+        cv2.line(img, (x, y), (x + l, y), (0, 255, 255), t)
+
+        # Bottom left
+        cv2.line(img, (x, y1), (x, y1 - l), (0, 255, 255), t)
+        cv2.line(img, (x, y1), (x + l, y1), (0, 255, 255), t)
+
+        # Top right
+        cv2.line(img, (x1, y), (x1, y + l), (0, 255, 255), t)
+        cv2.line(img, (x1, y), (x1 - l, y), (0, 255, 255), t)
+
+        # Bottom right
+        cv2.line(img, (x1, y1), (x1, y1 - l), (0, 255, 255), t)
+        cv2.line(img, (x1, y1), (x1 - l, y1), (0, 255, 255), t)
+ 
 
 
 
