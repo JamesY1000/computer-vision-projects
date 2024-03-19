@@ -35,6 +35,9 @@ class faceDetector():
                 
                 # Obtain bbox information - xmin, ymin, width, height, x, y
                 bbox_relative = detection.location_data.relative_bounding_box
+
+                # Obtain detection confidence
+                det_conf = detection.score
                 
                 # Convert locations to pixels
                 h, w, c = img.shape
@@ -49,6 +52,9 @@ class faceDetector():
 
                 if draw:
                     cv2.rectangle(img, (left_bound, lower_bound, right_bound, upper_bound), (0, 255, 0), 1)
+
+                    # Add detection confidence
+                    cv2.putText(img, f"Det conf: {str(int(det_conf[0] * 100))}%", (left_bound, lower_bound - 20), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 100, 255), 1)
             
         return img, bbox_coords
 
