@@ -25,7 +25,7 @@ while True:
     curr_time = time.time()
     fps = 1/ (curr_time - prev_time)
     prev_time = curr_time
-    cv2.putText(img, "FPS Counter: " +str(int(fps)), (70, 50), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 1)
+    cv2.putText(img, "FPS Counter: " + str(int(fps)), (70, 50), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 1)
 
     # Display video with our modifications
     cv2.imshow("Random video lol", img)
