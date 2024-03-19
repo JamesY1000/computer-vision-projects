@@ -36,7 +36,7 @@ while True:
             bBox_ratio = detection.location_data.relative_bounding_box
             ih, iw, ic = img.shape
             bBox = int(bBox_ratio.xmin * iw), int(bBox_ratio.ymin * ih), \
-                    int(bBox_ratio.width * iw), int(bBox_ratio.height * ih)
+                int(bBox_ratio.width * iw), int(bBox_ratio.height * ih)
             
             # Draw a rectange around bbox locations
             cv2.rectangle(img, bBox, (255, 0, 255), 2)
